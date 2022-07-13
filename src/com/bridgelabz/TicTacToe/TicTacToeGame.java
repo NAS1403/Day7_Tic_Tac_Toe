@@ -155,6 +155,68 @@ public class TicTacToeGame {
         }
         return false;
     }
+    static boolean isBlockAble(char[] board){
+
+        for(int i=1;i<10;i+=3) {
+            if (board[i] == playerLetter && board[i+1] == playerLetter && board[i+2] == ' ') {
+                board[i+2] = computerLetter;
+                System.out.println("Computer moved to position "+ (i+2));
+                return true;
+            } else if (board[i] == playerLetter && board[i+1] == ' ' && board[i+2] == playerLetter  ) {
+                board[i+1] = computerLetter;
+                System.out.println("Computer moved to position "+ (i+1));
+                return true;
+            } else if (board[i] == ' ' && board[i+1] == playerLetter && board[i+2] == playerLetter) {
+                board[i] = computerLetter;
+                System.out.println("Computer moved to position "+ (i));
+                return true;
+            }
+        }
+        for(int i=1;i<4;i++) {
+            if (board[i] == playerLetter && board[i+3] == playerLetter && board[i+6] == ' ') {
+                board[i+6] = computerLetter;
+                System.out.println("Computer moved to position "+ (i+6));
+                return true;
+            } else if (board[i] == playerLetter && board[i+3] == ' ' && board[i+6] == playerLetter  ) {
+                board[i+3] = computerLetter;
+                System.out.println("Computer moved to position "+ (i+3));
+                return true;
+            } else if (board[i] == ' ' && board[i+3] == playerLetter && board[i+6] == playerLetter) {
+                board[i] = computerLetter;
+                System.out.println("Computer moved to position "+ (i));
+                return true;
+            }
+        }
+        if (board[1] == playerLetter && board[5] == playerLetter && board[9] == ' ') {
+            board[9] = computerLetter;
+            System.out.println("Computer moved to position 9");
+            return true;
+        } else if (board[1] == playerLetter && board[5] == ' ' && board[9] == playerLetter  ) {
+            board[5] = computerLetter;
+            System.out.println("Computer moved to position 5" );
+            return true;
+        }
+        else if (board[1] ==' '  && board[5] == playerLetter && board[9] == playerLetter  ) {
+            board[1] = computerLetter;
+            System.out.println("Computer moved to position 1" );
+            return true;
+        }
+        if (board[3] == playerLetter && board[5] == playerLetter && board[7] == ' ') {
+            board[7] = computerLetter;
+            System.out.println("Computer moved to position 7");
+            return true;
+        } else if (board[3] == playerLetter && board[5] == ' ' && board[7] == playerLetter  ) {
+            board[5] = computerLetter;
+            System.out.println("Computer moved to position 5" );
+            return true;
+        }
+        else if (board[3] ==' '  && board[5] == playerLetter && board[7] == playerLetter  ) {
+            board[3] = computerLetter;
+            System.out.println("Computer moved to position 3" );
+            return true;
+        }
+        return false;
+    }
 
 
     static void computerMove(){
@@ -191,14 +253,37 @@ public class TicTacToeGame {
         return false;
     }
     public static void main(String[] args) {
+        CurrentPlayer currentPlayer= toss();
         createBoard(board);
         getLetter();
-        showBoard(board);
-        playerMove();
-        showBoard(board);
-        computerMove();
-        showBoard(board);
-        CurrentPlayer currentPlayer= toss();
-        System.out.println(currentPlayer);
+        boolean isBlockAble;
+        boolean isGameOver;
+        boolean isWinAble;
+
+        while(true) {
+            if (currentPlayer == CurrentPlayer.PLAYER) {
+                playerMove();
+                isGameOver=isGameOver(board,playerLetter);
+            }
+            else {
+                isWinAble=isWinAble(board);
+                isBlockAble=isBlockAble(board);
+
+                if(isWinAble){
+                    showBoard(board);
+                    break;
+                }
+                if(!isBlockAble){
+                    computerMove();
+                }
+
+                isGameOver=isGameOver(board,computerLetter);
+            }
+            showBoard(board);
+            if(isGameOver){
+                break;
+            }
+            currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER : CurrentPlayer.COMPUTER;
+        }
     }
 }
