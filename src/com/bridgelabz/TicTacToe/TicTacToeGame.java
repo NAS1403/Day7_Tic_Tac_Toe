@@ -155,6 +155,7 @@ public class TicTacToeGame {
         }
         return false;
     }
+
     static void computerMove(){
         position = (int)((Math.random()*10)%9)+1;
         while(board[position]!=' '){
@@ -253,14 +254,37 @@ public class TicTacToeGame {
     }
 
     public static void main(String[] args) {
+        CurrentPlayer currentPlayer= toss();
         createBoard(board);
         getLetter();
-        showBoard(board);
-        playerMove();
-        showBoard(board);
-        computerMove();
-        showBoard(board);
-        CurrentPlayer currentPlayer= toss();
-        System.out.println(currentPlayer);
+        boolean isBlockAble;
+        boolean isGameOver;
+        boolean isWinAble;
+
+        while(true) {
+            if (currentPlayer == CurrentPlayer.PLAYER) {
+                playerMove();
+                isGameOver=isGameOver(board,playerLetter);
+            }
+            else {
+                isWinAble=isWinAble(board);
+                isBlockAble=isBlockAble(board);
+
+                if(isWinAble){
+                    showBoard(board);
+                    break;
+                }
+                if(!isBlockAble){
+                    computerMove();
+                }
+
+                isGameOver=isGameOver(board,computerLetter);
+            }
+            showBoard(board);
+            if(isGameOver){
+                break;
+            }
+            currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER : CurrentPlayer.COMPUTER;
+        }
     }
 }
