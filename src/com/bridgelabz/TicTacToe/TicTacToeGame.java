@@ -268,12 +268,11 @@ public class TicTacToeGame {
             }
             else {
                 isWinAble=isWinAble(board);
-                isBlockAble=isBlockAble(board);
-
                 if(isWinAble){
                     showBoard(board);
                     break;
                 }
+                isBlockAble=isBlockAble(board);
                 if(!isBlockAble){
                     computerMove();
                 }
