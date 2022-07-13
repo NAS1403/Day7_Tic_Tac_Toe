@@ -81,7 +81,6 @@ public class TicTacToeGame {
         }
         makeMove(position,playerLetter,board);
         System.out.println("Player move to position "+position);
-        isGameOver(board,playerLetter);
     }
     static CurrentPlayer toss(){
         if((int)(Math.random()*10)%2==1){
@@ -98,59 +97,59 @@ public class TicTacToeGame {
         for(int i=1;i<10;i+=3) {
             if (board[i] == computerLetter && board[i+1] == computerLetter && board[i+2] == ' ') {
                 board[i+2] = computerLetter;
-                System.out.println("Computer own");
+                System.out.println("Computer Won!!!");
                 return true;
             } else if (board[i] == computerLetter && board[i+1] == ' ' && board[i+2] == computerLetter  ) {
                 board[i+1] = computerLetter;
-                System.out.println("Computer own");
+                System.out.println("Computer Won!!!");
                 return true;
             } else if (board[i] == ' ' && board[i+1] == computerLetter && board[i+2] == computerLetter) {
                 board[i] = computerLetter;
-                System.out.println("Computer own");
+                System.out.println("Computer Won!!!");
                 return true;
             }
         }
         for(int i=1;i<4;i++) {
             if (board[i] == computerLetter && board[i+3] == computerLetter && board[i+6] == ' ') {
                 board[i+6] = computerLetter;
-                System.out.println("Computer own");
+                System.out.println("Computer Won!!!");
                 return true;
             } else if (board[i] == computerLetter && board[i+3] == ' ' && board[i+6] == computerLetter  ) {
                 board[i+3] = computerLetter;
-                System.out.println("Computer own");
+                System.out.println("Computer Won!!!");
                 return true;
             } else if (board[i] == ' ' && board[i+3] == computerLetter && board[i+6] == computerLetter) {
                 board[i] = computerLetter;
-                System.out.println("Computer own");
+                System.out.println("Computer Won!!!");
                 return true;
             }
         }
         if (board[1] == computerLetter && board[5] == computerLetter && board[9] == ' ') {
             board[9] = computerLetter;
-            System.out.println("Computer own");
+            System.out.println("Computer Won!!!");
             return true;
         } else if (board[1] == computerLetter && board[5] == ' ' && board[9] == computerLetter  ) {
             board[5] = computerLetter;
-            System.out.println("Computer own");
+            System.out.println("Computer Won!!!");
             return true;
         }
         else if (board[1] ==' '  && board[5] == computerLetter && board[9] == computerLetter  ) {
             board[1] = computerLetter;
-            System.out.println("Computer own");
+            System.out.println("Computer Won!!!");
             return true;
         }
         if (board[3] == computerLetter && board[5] == computerLetter && board[7] == ' ') {
             board[7] = computerLetter;
-            System.out.println("Computer own");
+            System.out.println("Computer Won!!!");
             return true;
         } else if (board[3] == computerLetter && board[5] == ' ' && board[7] == computerLetter  ) {
             board[5] = computerLetter;
-            System.out.println("Computer own");
+            System.out.println("Computer Won!!!");
             return true;
         }
         else if (board[3] ==' '  && board[5] == computerLetter && board[7] == computerLetter  ) {
             board[3] = computerLetter;
-            System.out.println("Computer own");
+            System.out.println("Computer Won!!!");
             return true;
         }
         return false;
