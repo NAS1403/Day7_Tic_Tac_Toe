@@ -81,6 +81,7 @@ public class TicTacToeGame {
         }
         makeMove(position,playerLetter,board);
         System.out.println("Player move to position "+position);
+        isGameOver(board,playerLetter);
     }
     static CurrentPlayer toss(){
         if((int)(Math.random()*10)%2==1){
@@ -92,6 +93,29 @@ public class TicTacToeGame {
             return CurrentPlayer.COMPUTER;
         }
     }
+    public static boolean isGameOver(char[] board,char letter){
+
+        boolean option1 = (board[1]==letter && board[2] == letter && board[3] == letter);
+        boolean option2 = (board[4]==letter && board[5] == letter && board[6] == letter);
+        boolean option3 = (board[7]==letter && board[8] == letter && board[9] == letter);
+        boolean option4 = (board[1]==letter && board[4] == letter && board[7] == letter);
+        boolean option5 = (board[2]==letter && board[5] == letter && board[8] == letter);
+        boolean option6 = (board[3]==letter && board[6] == letter && board[9] == letter);
+        boolean option7 = (board[1]==letter && board[5] == letter && board[9] == letter);
+        boolean option8 = (board[3]==letter && board[5] == letter && board[7] == letter);
+        if( option1 || option2 || option3 || option4 || option5 || option6 || option7 || option8 ){
+
+                System.out.println("Player wins!!!");
+
+
+            return true;
+        }
+        if(board[1]!=' ' && board[2]!=' ' && board[3]!=' ' && board[4]!=' ' && board[5]!=' ' && board[6]!=' ' && board[7]!=' ' && board[8]!=' ' && board[9]!=' '){
+            System.out.println("Tie!!");
+            return true;
+        }
+        return false;
+    }
     public static void main(String[] args) {
         createBoard(board);
         getLetter();
@@ -100,6 +124,7 @@ public class TicTacToeGame {
         showBoard(board);
         CurrentPlayer currentPlayer= toss();
         System.out.println(currentPlayer);
+
 
     }
 }
