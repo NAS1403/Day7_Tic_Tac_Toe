@@ -1,5 +1,4 @@
 package com.bridgelabz.TicTacToe;
-
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -295,7 +294,6 @@ public class TicTacToeGame {
                         computerMove();
                     }
                 }
-
                 isGameOver=isGameOver(board,computerLetter);
             }
             showBoard(board);
