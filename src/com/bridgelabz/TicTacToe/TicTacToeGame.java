@@ -251,6 +251,23 @@ public class TicTacToeGame {
         }
         return false;
     }
+    static boolean takeCorner(char[] board,char letter){
+        if(board[1]==' '){
+            board[1]=letter;
+            return true;
+        }
+        else if(board[3]==' '){
+            board[3]=letter;
+            return true;
+        } else if (board[7]==' ') {
+            board[7]=letter;
+            return true;
+        } else if (board[9]==' ') {
+            board[9]=letter;
+            return true;
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         CurrentPlayer currentPlayer= toss();
@@ -273,7 +290,10 @@ public class TicTacToeGame {
                 }
                 isBlockAble=isBlockAble(board);
                 if(!isBlockAble){
-                    computerMove();
+                    boolean takeCorner = takeCorner(board,computerLetter);
+                    if(!takeCorner){
+                        computerMove();
+                    }
                 }
 
                 isGameOver=isGameOver(board,computerLetter);
